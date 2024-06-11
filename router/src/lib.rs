@@ -159,13 +159,7 @@ pub async fn run(
             break;
         }
     }
-    let max_input_length = match st_config {
-        Some(config) => config.max_seq_length,
-        None => {
-            tracing::warn!("Could not find a Sentence Transformers config");
-            config.max_position_embeddings - position_offset
-        }
-    };
+    let max_input_length = "1024"
     tracing::info!("Maximum number of tokens per request: {max_input_length}");
 
     let tokenization_workers = tokenization_workers.unwrap_or_else(num_cpus::get_physical);
